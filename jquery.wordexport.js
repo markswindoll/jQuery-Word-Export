@@ -1,6 +1,7 @@
-if (jQuery && saveAs) {
+if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
     (function($) {
         $.fn.wordExport = function(fileName) {
+            fileName = typeof fileName !== 'undefined' ? fileName : "jQuery-Word-Export";
             var static = {
                 mhtml: {
                     top: "Mime-Version: 1.0\nContent-Base: " + location.href + "\nContent-Type: Multipart/related; boundary=\"NEXT.ITEM-BOUNDARY\";type=\"text/html\"\n\n--NEXT.ITEM-BOUNDARY\nContent-Type: text/html; charset=\"utf-8\"\nContent-Location: " + location.href + "\n\n<!DOCTYPE html>\n<html>\n_html_</html>",
@@ -53,7 +54,7 @@ if (jQuery && saveAs) {
             }
 
             // Prepare bottom of mhtml file with image data
-            var mhtmlBottom = "";
+            var mhtmlBottom = "\n";
             for (var i = 0; i < images.length; i++) {
                 mhtmlBottom += "--NEXT.ITEM-BOUNDARY\n";
                 mhtmlBottom += "Content-Location: " + images[i].contentLocation + "\n";
@@ -61,26 +62,26 @@ if (jQuery && saveAs) {
                 mhtmlBottom += "Content-Transfer-Encoding: " + images[i].contentEncoding + "\n\n";
                 mhtmlBottom += images[i].contentData + "\n\n";
             }
+            mhtmlBottom += "--NEXT.ITEM-BOUNDARY--";
 
             //TODO: load css from included stylesheet
             var styles = "";
 
             // Aggregate parts of the file together 
             var fileContent = static.mhtml.top.replace("_html_", static.mhtml.head.replace("_styles_", styles) + static.mhtml.body.replace("_body_", markup.html())) + mhtmlBottom;
-            mhtmlBottom += "--NEXT.ITEM-BOUNDARY--";
 
             // Create a Blob with the file contents
-            var blob = new Blob([content], {
+            var blob = new Blob([fileContent], {
                 type: "application/msword;charset=utf-8"
             });
             saveAs(blob, fileName + ".doc");
         };
     })(jQuery);
 } else {
-    if (!jQuery) {
+    if (typeof jQuery === "undefined") {
         console.error("jQuery Word Export: missing dependency (jQuery)");
     }
-    if (!saveAs) {
+    if (typeof saveAs === "undefined") {
         console.error("jQuery Word Export: missing dependency (FileSaver.js)");
     };
 }
