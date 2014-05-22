@@ -5,7 +5,7 @@ jQuery plugin for exporting HTML and images to a Microsoft Word document
 
 _Work in progress_: please be patient.
 
-_Dependencies_: [jQuery](http://jquery.com/) and [FileSaver.js](https://github.com/eligrey/FileSaver.js/)
+Dependencies: [jQuery](http://jquery.com/) and [FileSaver.js](https://github.com/eligrey/FileSaver.js/)
 
 This plugin takes advantage of the fact that MS Word can interpret HTML as a document. Specifically, this plugin leverages the [MHTML](http://en.wikipedia.org/wiki/MHTML) archive format in order to embed images directly into the file, so they can be viewed offline.
 
