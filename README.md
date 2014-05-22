@@ -5,4 +5,8 @@ jQuery plugin for exporting HTML and images to a Microsoft Word document
 
 _Work in progress_: please be patient.
 
+This plugin takes advantage of the fact that MS Word can interpret HTML as a document. Specifically, this plugin leverages the [MHTML](http://en.wikipedia.org/wiki/MHTML) archive format in order to embed images directly into the file, so they can be viewed offline.
+
+Unfortunately, LibreOffice and, probably, other similar word processors read the output file as plain text rather than interpreting it is a document, so the output of this plugin will only work with MS Word proper.
+
 Click here for demo: [http://mark.swindoll.us/jquery-word-export/](http://mark.swindoll.us/jquery-word-export/)
