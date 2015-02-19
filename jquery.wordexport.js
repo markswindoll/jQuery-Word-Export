@@ -29,7 +29,6 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
                 // Calculate dimensions of output image
                 var w = Math.min(img[i].width, options.maxWidth);
                 var h = img[i].height * (w / img[i].width);
-                console.log(w,h);
                 // Create canvas for converting image to data URL
                 var canvas = document.createElement("CANVAS");
                 canvas.width = w;
@@ -49,8 +48,6 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
                     location: $(img[i]).attr("src"),
                     data: uri.substring(uri.indexOf(",") + 1)
                 };
-                // Remove canvas now that we no longer need it
-                // canvas.parentNode.removeChild(canvas);
             }
 
             // Prepare bottom of mhtml file with image data
