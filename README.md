@@ -9,4 +9,4 @@ This plugin takes advantage of the fact that MS Word can interpret HTML as a doc
 
 Unfortunately, LibreOffice and, probably, other similar word processors read the output file as plain text rather than interpreting it is a document, so the output of this plugin will only work with MS Word proper.
 
-Click here for demo: [http://mark.swindoll.us/jquery-word-export/](http://mark.swindoll.us/jquery-word-export/)
+Click here for demo: [http://markswindoll.github.io/jquery-word-export/](http://markswindoll.github.io/jquery-word-export/)
