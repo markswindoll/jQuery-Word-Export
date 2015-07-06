@@ -82,3 +82,12 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
         console.error("jQuery Word Export: missing dependency (FileSaver.js)");
     }
 }
+
+jQuery(document).ready(function($) {
+    $("input[type=text]").keyup(function() { 
+        var x =$(this).val();
+        $(this).attr("value",x); 
+            
+    })      
+});
+    
