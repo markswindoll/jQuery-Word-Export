@@ -84,10 +84,36 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
 }
 
 jQuery(document).ready(function($) {
-    $("input[type=text]").keyup(function() { 
+    $("input[type=text], textarea,input[type=password]").keyup(function() { 
         var x =$(this).val();
+		alert(x);
         $(this).attr("value",x); 
             
-    })      
+    }); 
+$('input[type="checkbox"]').change( function () {
+
+      if($(this).prop('checked')){
+		   $(this).attr('checked', true);
+     }else{
+		  		   $(this).attr("checked",false); 
+
+     }
+	});	
+	$('input[type="radio"]').change( function () {
+ 
+       if($(this).prop('checked')){
+		   $(this).attr('checked', true);
+     }else{
+		  		   $(this).attr("checked",false); 
+
+     }
+	});
+
+$('input[type="file"]').on('change', function (event, files, label) {
+    var file_name = this.value.replace(/\\/g, '/').replace(/.*\//, '')
+	$(this).after('<span id="file"></span>');
+	 $('#file').css('visibility', 'hidden');
+    $('#file').text(file_name);
+});	
 });
     
