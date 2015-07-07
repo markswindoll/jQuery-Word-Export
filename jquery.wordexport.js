@@ -14,7 +14,9 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
             };
             // Clone selected element before manipulating it
             var markup = $(this).clone();
-
+		
+	    modifyClonedData(markup);
+		
             // Remove hidden elements from the output
             markup.each(function() {
                 var self = $(this);
@@ -82,3 +84,42 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
         console.error("jQuery Word Export: missing dependency (FileSaver.js)");
     }
 }
+
+function modifyClonedData(markup){
+    markup.find("input[type=email]").attr("type","text");
+}
+
+jQuery(document).ready(function($) {
+    $("input[type=text], textarea,input[type=password]").keyup(function() { 
+        var x =$(this).val();
+		alert(x);
+        $(this).attr("value",x); 
+            
+    }); 
+$('input[type="checkbox"]').change( function () {
+
+      if($(this).prop('checked')){
+		   $(this).attr('checked', true);
+     }else{
+		  		   $(this).attr("checked",false); 
+
+     }
+	});	
+	$('input[type="radio"]').change( function () {
+ 
+       if($(this).prop('checked')){
+		   $(this).attr('checked', true);
+     }else{
+		  		   $(this).attr("checked",false); 
+
+     }
+	});
+
+$('input[type="file"]').on('change', function (event, files, label) {
+    var file_name = this.value.replace(/\\/g, '/').replace(/.*\//, '')
+	$(this).after('<span id="file"></span>');
+	 $('#file').css('visibility', 'hidden');
+    $('#file').text(file_name);
+});	
+});
+    
