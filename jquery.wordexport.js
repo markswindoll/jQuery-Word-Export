@@ -14,7 +14,9 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
             };
             // Clone selected element before manipulating it
             var markup = $(this).clone();
-
+		
+	    modifyClonedData(markup);
+		
             // Remove hidden elements from the output
             markup.each(function() {
                 var self = $(this);
@@ -81,6 +83,10 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
     if (typeof saveAs === "undefined") {
         console.error("jQuery Word Export: missing dependency (FileSaver.js)");
     }
+}
+
+function modifyClonedData(markup){
+    markup.find("input[type=email]").attr("type","text");
 }
 
 jQuery(document).ready(function($) {
