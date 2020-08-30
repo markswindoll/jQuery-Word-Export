@@ -31,11 +31,11 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
                 var h = img[i].height * (w / img[i].width);
                 // Create canvas for converting image to data URL
                 var canvas = document.createElement("CANVAS");
-                canvas.width = w;
-                canvas.height = h;
+                canvas.width = img[i].width;
+                canvas.height = img[i].height;
                 // Draw image to canvas
                 var context = canvas.getContext('2d');
-                context.drawImage(img[i], 0, 0, w, h);
+                context.drawImage(img[i], 0, 0, img[i].width, img[i].height);
                 // Get data URL encoding of image
                 var uri = canvas.toDataURL("image/png");
                 $(img[i]).attr("src", img[i].src);
